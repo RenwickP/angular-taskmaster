@@ -37,9 +37,10 @@ export class AppComponent {
     this.lists = this.lists.filter(item => item.id !== id);
   }
 
-  addTodo() {
+  addTodo(daddyId) {
     if (this.todoValue !== "") {
       const newItem: Todo = {
+        parentList: daddyId,
         id: Date.now(),
         value: this.todoValue,
         status: false

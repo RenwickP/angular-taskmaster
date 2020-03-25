@@ -20,15 +20,24 @@
     <div>
       <!-- <input name="status" [(ngModel)]="item.status" /> -->
       <input type="text" class="todo-item" [(ngModel)]="todoValue" />
-      <button class="btn" (click)="addTodo()">
+      <button class="btn" (click)="addTodo(item.id)">
         Add
       </button>
     </div>
     <ul>
       <li *ngFor="let td of todos">
-        <input type="checkbox" name="status" [(ngModel)]="td.status" />{{
-          td.value
-        }}
+        <input
+          type="checkbox"
+          name="status"
+          [(ngModel)]="td.status"
+          [(ngSwitch)]="item.id"
+        />
+        <p *ngSwitchCase="td.parentList">v={{ td.value }}</p>
+        <p>pl={{ td.parentList }}</p>
+        <p>id={{ td.id }}</p>
+        <p>item.id{{ item.id }}</p>
+        <div *ngSwitchDefault></div>
+
         <button class="btn" (click)="deleteTodo(td.id)">Delete</button>
       </li>
     </ul>
